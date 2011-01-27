@@ -10,11 +10,11 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = [ 'Jeremy Ruppel' ]
   s.email       = [ 'jeremy.ruppel@gmail.com' ]
-  s.homepage    = 'TODO'
+  s.homepage    = 'https://github.com/SFCRD/fvm'
   s.summary     = 'Flex SDK version manager'
   s.description = 'Flex SDK version manager'
 
-  # s.add_dependency "thor", "0.14.3"
+  s.add_dependency 'thor', '0.14.3'
   # s.add_dependency "celerity", "0.8.2"
   # s.add_dependency "jruby-openssl"
   # s.add_dependency "mechanize", "~> 1.0"
