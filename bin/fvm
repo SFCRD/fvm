@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby -wKU
+
+require 'fvm'
+Fvm::CLI.start
