@@ -18,6 +18,7 @@ module Fvm
   end
   
   module Installers
+    autoload :Base, 'fvm/installers/base'
     autoload :Wget, 'fvm/installers/wget'
   end
 end
