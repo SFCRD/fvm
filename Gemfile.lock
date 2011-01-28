@@ -4,7 +4,7 @@ PATH
     fvm (0.0.1)
       highline (~> 1.6)
       mechanize (~> 1.0)
-      rainbow
+      rainbow (~> 1.1)
       thor (= 0.14.3)
 
 GEM
@@ -24,5 +24,5 @@ DEPENDENCIES
   fvm!
   highline (~> 1.6)
   mechanize (~> 1.0)
-  rainbow
+  rainbow (~> 1.1)
   thor (= 0.14.3)

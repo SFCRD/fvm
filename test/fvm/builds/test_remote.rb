@@ -20,4 +20,9 @@ class TestFvmBuildsRemote < Test::Unit::TestCase
     build = Fvm::Builds::Remote.new( @version, @time )
     assert_equal( Time.parse( @time ), build.date )
   end
+  # provides download url based on version
+  def test_provides_download_url_based_on_version
+    build = Fvm::Builds::Remote.new( @version, @time )
+    assert_equal( "http://fpdownload.adobe.com/pub/flex/sdk/builds/flex4/flex_sdk_4.1.0.16021_mpl.zip", build.url )
+  end
 end
