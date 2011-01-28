@@ -1,4 +1,5 @@
 require 'zip/zip'
+require 'fileutils'
 
 module Fvm
   module Installers
@@ -18,8 +19,22 @@ module Fvm
 =end
       def unzip( zip, path )
 
+        
+
+        Dir.chdir( path ){
+          `unzip #{File.basename( zip )}`
+          # Zip::ZipFile.open( File.basename( zip ) ) do |z|
+          #             z.entries.each do |f|
+          #               FileUtils.mkdir_p( File.dirname( f.name ) )
+          #               puts f.name
+          #               f.extract
+          #               # z.extract( f, File.join( path, f ) )
+          #             end
+          #           end
+        }
+
         # `unzip #{zip} -d #{path}`
-        Dir.chdir( path ){ `unzip #{File.basename( zip )}` }
+        # Dir.chdir( path ){ `unzip #{File.basename( zip )}` }
         # package = File.join( File.dirname( zip ), package_name( zip ) )
         # extract = File.join( File.dirname( zip ), File.basename( zip, '.zip' ) )
         # res = `unzip #{zip} -d #{File.dirname( zip )}`
