@@ -9,7 +9,7 @@ require 'fileutils'
 class TestFvmInstallersWget < Test::Unit::TestCase
   # setup
   def setup
-    @file      = 'https://github.com/SFCRD/fvm/raw/master/test/fixtures/files/flex_sdk_4-1.1.0.12345.zip'
+    @file      = 'https://github.com/SFCRD/fvm/raw/master/test/fixtures/files/flex_sdk_4-1.1.0.12345_mpl.zip'
     @dest      = File.expand_path( File.join( __FILE__, '..', '..', '..', 'fixtures/installers' ) )
     @download  = File.join( @dest, File.basename( @file ) )
     @installer = Fvm::Installers::Wget.new
