@@ -7,7 +7,7 @@ require "fvm/installers/wget"
 class TestFvmInstallersWget < Test::Unit::TestCase
   # setup
   def setup
-    @data = 'http://www.google.com/crossdomain.xml'
+    @data = 'https://github.com/SFCRD/fvm/blob/master/test/fixtures/installers/data/flex_sdk_4.1.0.12345.zip'
     @dest = File.expand_path( File.join( __FILE__, '..', '..', '..', 'fixtures/installers' ) )
     @expected = File.join( @dest, File.basename( @data ) )
     @installer = Fvm::Installers::Wget.new

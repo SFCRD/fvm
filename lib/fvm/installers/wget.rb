@@ -3,7 +3,7 @@ module Fvm
     class Wget
       
       def install!( url, path )
-        Dir.chdir( path ) { puts `wget #{url}` }
+        Dir.chdir( path ) { `wget #{url}` }
       end
       
     end
