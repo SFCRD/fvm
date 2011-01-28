@@ -11,4 +11,7 @@ module Fvm
     autoload :Flex4, 'fvm/parsers/flex_4'
   end
   
+  module Lists
+    autoload :Remotes, 'fvm/lists/remotes'
+  end
 end

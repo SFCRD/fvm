@@ -6,15 +6,13 @@ module Fvm
   class CLI < Thor
     desc 'install', 'Install a specific Flex SDK version'
     def install
-      puts 'TODO install'
+      build = remotes.choose!
       
-      
-      highline.choose do |menu|
-        menu.index = :letter
-        menu.index_suffix = ") "
-        menu.prompt = "Please choose your favorite programming language?  "
-        menu.choice :ruby do say("Good choice!") end
-        menu.choices(:python, :perl) do say("Not from around here, are you?") end
+      if locals.installed? build
+        puts "Flex SDK build #{build.version} already installed locally"
+      else
+        installer.install build
+        linker.link build
       end
       
     end
@@ -57,11 +55,30 @@ module Fvm
     desc 'use', 'Symlink to a specific Flex SDK version'
     def use
       puts 'TODO use'
+      
+      build = locals.choose!
+      
+      if build.active?
+        puts "Flex SDK build #{build.version} already active"
+      else
+        linker.unlink!
+        linker.link build
+      end
+      
     end
     
     protected
-    def highline
-      @highline ||= Highline.new
+    def remotes
+      @remotes ||= Fvm::Lists::Remotes.new
+    end
+    def locals
+      @locals ||= Fvm::Lists::Locals.new
+    end
+    def linker
+      @linker ||= Fvm::Linker.new
+    end
+    def installer
+      @installer ||= Fvm::Installer.new
     end
   end
 end
