@@ -12,6 +12,12 @@ module Fvm
   end
   
   module Lists
+    autoload :Base, 'fvm/lists/base'
+    autoload :Locals, 'fvm/lists/locals'
     autoload :Remotes, 'fvm/lists/remotes'
+  end
+  
+  module Installers
+    autoload :Wget, 'fvm/installers/wget'
   end
 end
