@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Fvm
   module Installers
     class Wget < Base
