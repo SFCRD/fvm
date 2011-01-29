@@ -13,7 +13,19 @@ module Fvm
       else
         puts "Installing Flex SDK build #{build.version} from #{build.url} to #{locals.path}"
 
-        installer.install!( build.url, locals.path )
+        download = installer.download( build.url, locals.path )
+        
+        puts "Unzipping and installing #{download}..."
+        
+        unzipped = installer.unzip( download, locals.path )
+        
+        puts "Installed Flex SDK build #{build.version} to #{unzipped}".color( :green )
+        
+        puts "Cleaning up..."
+        
+        FileUtils.rm_rf download
+        
+        puts "Creating symlinks..."
         # linker.link build
       end
       
