@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby -wKU
+
+puts "Linker works yo!"

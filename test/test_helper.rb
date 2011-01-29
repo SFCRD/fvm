@@ -2,4 +2,4 @@
 
 require 'test/unit'
 
-Dir[ File.dirname( __FILE__ ) + '/fvm/**/test_*.rb' ].each { |t| require t }
+Dir[ File.dirname( __FILE__ ) + '/fvm/**/test_*.rb' ].reject{ |t| t[ /wget/ ] }.each { |t| require t }
