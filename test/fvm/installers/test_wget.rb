@@ -9,7 +9,7 @@ require 'fileutils'
 class TestFvmInstallersWget < Test::Unit::TestCase
   # setup
   def setup
-    @file      = 'https://github.com/SFCRD/fvm/raw/master/test/fixtures/files/flex_sdk_4-1.1.0.12345_mpl.zip'
+    @file      = 'https://github.com/SFCRD/fvm/raw/master/test/fixtures/files/flex_sdk_4.1.0.12345_mpl.zip'
     @dest      = File.expand_path( File.join( __FILE__, '..', '..', '..', 'fixtures/installers' ) )
     @download  = File.join( @dest, File.basename( @file ) )
     @installer = Fvm::Installers::Wget.new
@@ -38,11 +38,27 @@ class TestFvmInstallersWget < Test::Unit::TestCase
   def test_unzips_file_in_given_directory
     assert_equal( false, File.exist?( File.join( @dest, 'flex_sdk_4.1.0.12345_mpl' ) ) )
     download = @installer.download( @file, @dest )
-    puts "DIRECTORY CONTENTS:"
-    puts Dir[ File.join( @dest, '*' ) ]
     @installer.unzip( download, @dest )
-    puts "DIRECTORY CONTENTS:"
-    puts Dir[ File.join( @dest, '*' ) ]
     assert_equal( true, File.exist?( File.join( @dest, 'flex_sdk_4.1.0.12345_mpl' ) ) )
+  end
+  # returns filename of unzipped file
+  def test_returns_filename_of_unzipped_file
+    assert_equal( File.join( @dest, 'flex_sdk_4.1.0.12345_mpl' ), @installer.unzip( @installer.download( @file, @dest ), @dest ) )
+  end
+  # renames directory to match flex sdk convention
+  def test_renames_directory_to_match_flex_sdk_convention
+    assert_equal( false, File.exist?( File.join( @dest, 'flex_sdk_4.1.0.12345' ) ) )
+    download = @installer.download( @file, @dest )
+    unzipped = @installer.unzip( download, @dest )
+    @installer.rename( unzipped, @dest )
+    assert_equal( true, File.exist?( File.join( @dest, 'flex_sdk_4.1.0.12345' ) ) )
+  end
+  # returns filename of renamed file
+  def test_returns_filename_of_renamed_file
+    assert_equal( File.join( @dest, 'flex_sdk_4.1.0.12345' ), @installer.rename( @installer.unzip( @installer.download( @file, @dest ), @dest ), @dest ) )
+  end
+  # install is equal to downloading unzipping and renaming a file
+  def test_install_is_equal_to_downloading_unzipping_and_renaming_a_file
+    assert_equal( File.join( @dest, 'flex_sdk_4.1.0.12345' ), @installer.install( @file, @dest ) )
   end
 end
