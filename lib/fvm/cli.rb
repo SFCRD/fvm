@@ -75,11 +75,7 @@ module Fvm
     end
     
     def locals_path
-      if true
-        File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/lists' ) )
-      else
-        '~/Developer/SDKs/'
-      end
+      '~/Developer/SDKs/'
     end
     
     def locals
@@ -87,11 +83,7 @@ module Fvm
     end
     
     def links_path
-      if true
-        File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/linkers' ) )
-      else
-        '/opt/local/bin'
-      end
+      '/opt/local/bin'
     end
     
     def linker
