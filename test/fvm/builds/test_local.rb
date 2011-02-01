@@ -28,4 +28,10 @@ class TestFvmBuildsLocal < Test::Unit::TestCase
     build = Fvm::Builds::Local.new( @file )
     assert_equal( File.ctime( @file ), build.date )
   end
+  # bins returns all unix executables in the bin directory
+  def test_bins_returns_all_unix_executables_in_the_bin_directory
+    build = Fvm::Builds::Local.new( @file )
+    expected = [ 'anothersample', 'sampleprogram' ].map { |f| File.join( @file, 'bin', f ) }
+    assert_equal( expected, build.bins )
+  end
 end
