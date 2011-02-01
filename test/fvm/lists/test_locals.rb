@@ -8,6 +8,11 @@ class TestFvmListsLocals < Test::Unit::TestCase
   # setup
   def setup
     @path = File.expand_path( File.join( __FILE__, '..', '..', '..', 'fixtures/lists' ) )
+    @made = File.join( @path, 'made' )
+  end
+  # teardown
+  def teardown
+    FileUtils.rm_r @made if File.exist? @made
   end
   # fixture path exists
   def test_fixture_path_exists
@@ -36,5 +41,11 @@ class TestFvmListsLocals < Test::Unit::TestCase
     assert_equal( true, list.installed?( '3.2.0.3958' ) )
     assert_equal( true, list.installed?( '4.1.0.16032' ) )
     assert_equal( false, list.installed?( '3.2.1.9999' ) )
+  end
+  # if directory passed to locals constructor does not exist it is created
+  def test_if_directory_passed_to_locals_constructor_does_not_exist_it_is_created
+    assert_equal( false, File.exist?( @made ) )
+    list = Fvm::Lists::Locals.new( @made )
+    assert_equal( true, File.exist?( @made ) )
   end
 end

@@ -75,7 +75,7 @@ module Fvm
     end
     
     def locals_path
-      '~/Developer/SDKs/'
+      File.expand_path '~/Developer/SDKs/'
     end
     
     def locals

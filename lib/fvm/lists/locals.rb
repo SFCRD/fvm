@@ -5,6 +5,7 @@ module Fvm
       attr_reader :path
       def initialize( path )
         @path = path
+        FileUtils.makedirs path unless File.exist? path
       end
       
       def builds
