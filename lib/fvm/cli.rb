@@ -87,7 +87,7 @@ module Fvm
     end
     
     def linker
-      @linker ||= Fvm::Linkers::Linker.new( locals_path )
+      @linker ||= Fvm::Linkers::Linker.new( links_path )
     end
     
     def installer
