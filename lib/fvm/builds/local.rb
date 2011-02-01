@@ -1,5 +1,8 @@
 module Fvm
   module Builds
+    
+    Bin = Struct.new( :name, :path )
+    
     class Local < Base
       attr_reader :filename
       def initialize( filename )
@@ -9,7 +12,15 @@ module Fvm
       end
       
       def bins
-        Dir[ File.join( filename, 'bin', '*' ) ].select { |f| File.executable?( f ) and File.extname( f ).empty? }.sort
+        Dir[ binpath ].select { |f| valid_bin? f }.sort.map { |b| Bin.new( File.basename( b ), b ) }
+      end
+      
+      protected
+      def binpath
+        File.join( filename, 'bin', '*' )
+      end
+      def valid_bin?( path )
+        File.executable?( path ) and File.extname( path ).empty?
       end
     end
   end

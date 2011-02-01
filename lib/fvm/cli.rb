@@ -29,11 +29,11 @@ module Fvm
         
         local = Fvm::Builds::Local.new( unzipped )
         
-        local.bins.map { |bin| [ File.basename( bin ), bin ] }.each do |bin, path|
+        unlink
+        
+        local.bins.each do |bin|
           
-          linker.unlink( bin ) if linker.linked?( bin )
-          
-          linker.link( bin, path )
+          linker.link( bin.name, bin.path )
           
         end
 
@@ -44,21 +44,38 @@ module Fvm
     desc 'unlink', 'Removes symlinks for executables'
     def unlink
       # find all possible installed symlinks
-      bins = locals.builds.map( &:bins ).flatten.map { |bin| File.basename( bin ) }.uniq
+      bins = locals.builds.map( &:bins ).flatten
       # unlink each one if it is currently linked
-      bins.each { |bin| linker.unlink( bin ) if linker.linked?( bin ) }
+      bins.map( &:name ).uniq.each { |name| linker.unlink( name ) if linker.linked?( name ) }
     end
     
     desc 'list', 'List available Flex SDK versions'
-    method_option :local, :type => :boolean, :default => false, :aliases => "-l", :desc => "List existing Flex SDK installations"
     method_option :remote, :type => :boolean, :default => false, :aliases => "-r", :desc => "List remote Flex SDK downloads"
     def list
-      if options.local?
-        puts locals.builds.map( &:version )
-      elsif options.remote?
+      if options.remote?
         puts remotes.builds.map( &:version )
       else
         puts locals.builds.map( &:version )
+      end
+    end
+    
+    desc 'use', 'Link to a specific installed Flex SDK version'
+    def use
+      # choose a local build
+      local = locals.choose!
+      # unlink all symlinks
+      unlink
+      # link to the selected build's bins
+      
+      
+      # 
+      # REFACTOR
+      # vvvvvvvv
+      #
+      local.bins.each do |bin|
+
+        linker.link( bin.name, bin.path )
+        
       end
     end
     # desc 'list', 'List available Flex SDK versions'
@@ -113,22 +130,14 @@ module Fvm
     # end
     
     protected
-    def testing?
-      true
-    end
     def remotes_url
-      if testing?
-        url = File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/parsers/flex-4-downloads.html' ) )
-        "file://#{url}"
-      else
-        "http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+4"
-      end
+      "http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+4"
     end
     def remotes
       @remotes ||= Fvm::Lists::Remotes.new( remotes_url )
     end
     def locals_path
-      if testing?
+      if true
         File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/lists' ) )
       else
         '~/Developer/SDKs/'
@@ -138,7 +147,7 @@ module Fvm
       @locals ||= Fvm::Lists::Locals.new( locals_path )
     end
     def links_path
-      if testing?
+      if true
         File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/lists' ) )
       else
         '/opt/local/bin'
