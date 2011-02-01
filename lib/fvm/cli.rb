@@ -48,9 +48,9 @@ module Fvm
     method_option :remote, :type => :boolean, :default => false, :aliases => "-r", :desc => "List remote Flex SDK downloads"
     def list
       if options.remote?
-        puts remotes.builds.map( &:version )
+        puts remotes.builds.map( &:to_s )
       else
-        puts locals.builds.map( &:version )
+        puts locals.builds.map( &:to_s )
       end
     end
     

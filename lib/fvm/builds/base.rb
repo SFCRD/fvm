@@ -8,6 +8,9 @@ module Fvm
         @version = version
         @date = date
       end
+      def to_s
+        version
+      end
     end
   end
 end

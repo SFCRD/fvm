@@ -6,7 +6,7 @@ module Fvm
       
       def choose!
         options = builds
-        choices = Hash[ options.map( &:version ).zip( options ) ]
+        choices = Hash[ options.map( &:to_s ).zip( options ) ]
         highline.choose do |menu|
           menu.choices( *choices.keys ) do |choice|
             choices[ choice ]
