@@ -7,7 +7,6 @@ module Fvm
         @path = path
       end
       
-      
       def builds
         directories.map { |dir| create_build dir }
       end

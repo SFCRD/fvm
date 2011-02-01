@@ -21,4 +21,8 @@ module Fvm
     autoload :Base, 'fvm/installers/base'
     autoload :Wget, 'fvm/installers/wget'
   end
+  
+  module Linkers
+    autoload :Linker, 'fvm/linkers/linker'
+  end
 end

@@ -7,7 +7,15 @@ module Fvm
       end
       
       def link( name, dest )
-        File.symlink( dest, File.join( path, name ) )
+        File.join( path, name ).tap { |link| File.symlink( dest, link ) }
+      end
+      
+      def unlink( name )
+        File.delete( File.join( path, name ) )
+      end
+      
+      def linked?( name )
+        File.exist?( File.join( path, name ) )
       end
     end
   end

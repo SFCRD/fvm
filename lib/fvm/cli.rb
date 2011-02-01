@@ -26,6 +26,8 @@ module Fvm
         FileUtils.rm_rf download
         
         puts "Creating symlinks..."
+        
+        build.
         # linker.link build
       end
       
@@ -102,9 +104,9 @@ module Fvm
     def locals
       @locals ||= Fvm::Lists::Locals.new( locals_path )
     end
-    # def linker
-    #   @linker ||= Fvm::Linker.new
-    # end
+    def linker
+      @linker ||= Fvm::Linkers::Linker.new( locals_path )
+    end
     def installer
       @installer ||= Fvm::Installers::Wget.new
     end
