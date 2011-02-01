@@ -27,10 +27,39 @@ module Fvm
         
         puts "Creating symlinks..."
         
-        build.
-        # linker.link build
+        local = Fvm::Builds::Local.new( unzipped )
+        
+        local.bins.map { |bin| [ File.basename( bin ), bin ] }.each do |bin, path|
+          
+          linker.unlink( bin ) if linker.linked?( bin )
+          
+          linker.link( bin, path )
+          
+        end
+
       end
       
+    end
+    
+    desc 'unlink', 'Removes symlinks for executables'
+    def unlink
+      # find all possible installed symlinks
+      bins = locals.builds.map( &:bins ).flatten.map { |bin| File.basename( bin ) }.uniq
+      # unlink each one if it is currently linked
+      bins.each { |bin| linker.unlink( bin ) if linker.linked?( bin ) }
+    end
+    
+    desc 'list', 'List available Flex SDK versions'
+    method_option :local, :type => :boolean, :default => false, :aliases => "-l", :desc => "List existing Flex SDK installations"
+    method_option :remote, :type => :boolean, :default => false, :aliases => "-r", :desc => "List remote Flex SDK downloads"
+    def list
+      if options.local?
+        puts locals.builds.map( &:version )
+      elsif options.remote?
+        puts remotes.builds.map( &:version )
+      else
+        puts locals.builds.map( &:version )
+      end
     end
     # desc 'list', 'List available Flex SDK versions'
     # method_option :local, :type => :boolean, :default => false, :aliases => "-l", :desc => "List existing Flex SDK installations"
@@ -85,7 +114,7 @@ module Fvm
     
     protected
     def testing?
-      false
+      true
     end
     def remotes_url
       if testing?
@@ -99,10 +128,21 @@ module Fvm
       @remotes ||= Fvm::Lists::Remotes.new( remotes_url )
     end
     def locals_path
-      File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/lists' ) )
+      if testing?
+        File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/lists' ) )
+      else
+        '~/Developer/SDKs/'
+      end
     end
     def locals
       @locals ||= Fvm::Lists::Locals.new( locals_path )
+    end
+    def links_path
+      if testing?
+        File.expand_path( File.join( File.dirname( __FILE__ ), '..', '..', 'test', 'fixtures/lists' ) )
+      else
+        '/opt/local/bin'
+      end
     end
     def linker
       @linker ||= Fvm::Linkers::Linker.new( locals_path )
