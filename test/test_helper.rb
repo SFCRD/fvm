@@ -2,4 +2,6 @@
 
 require 'test/unit'
 
-Dir[ File.dirname( __FILE__ ) + '/fvm/**/test_*.rb' ].reject{ |t| t[ /wget/ ] }.each { |t| require t }
+SKIP_DOWNLOAD_TESTS = true
+
+Dir[ File.dirname( __FILE__ ) + '/fvm/**/test_*.rb' ].reject{ |t| SKIP_DOWNLOAD_TESTS and t[ /wget/ ] }.each { |t| require t }
