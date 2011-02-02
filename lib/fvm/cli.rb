@@ -6,6 +6,9 @@ module Fvm
     
     desc 'install', 'Install a specific Flex SDK version'
     def install
+      # check for write perms
+      check_for_write_perms!
+      
       build = remotes.choose!
       
       if locals.installed? build.version
@@ -38,6 +41,8 @@ module Fvm
     
     desc 'unlink', 'Removes symlinks for executables'
     def unlink
+      # check for write perms
+      check_for_write_perms!
       # find all possible installed symlinks
       bins = locals.builds.map( &:bins ).flatten
       # unlink each one if it is currently linked
@@ -56,6 +61,8 @@ module Fvm
     
     desc 'use', 'Link to a specific installed Flex SDK version'
     def use
+      # check for write perms
+      check_for_write_perms!
       # choose a local build
       local = locals.choose!
       # unlink all symlinks
@@ -65,6 +72,13 @@ module Fvm
     end
     
     protected
+    
+    def check_for_write_perms!
+      unless File.writable? links_path
+        puts "This command requires write access to #{links_path} to manage symlinks. Please re-run as root with sudo.".color( :red ).bright
+        exit
+      end
+    end
     
     def remotes_url
       "http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+4"
