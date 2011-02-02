@@ -6,9 +6,6 @@ module Fvm
     
     desc 'install', 'Install a specific Flex SDK version'
     def install
-      # check for write perms
-      check_for_write_perms!
-      
       build = remotes.choose!
       
       if locals.installed? build.version
@@ -22,19 +19,11 @@ module Fvm
         
         unzipped = installer.unzip( download, locals.path )
         
-        puts "Installed Flex SDK build #{build.version} to #{unzipped}".color( :green )
-        
         puts "Cleaning up..."
         
         FileUtils.rm_rf download
         
-        puts "Creating symlinks..."
-        
-        local = Fvm::Builds::Local.new( unzipped )
-        # unlink all symlinks
-        unlink
-        # link to the selected build's bins
-        local.bins.each { |bin| linker.link( bin.name, bin.path ) }
+        puts "Installed Flex SDK build #{build.version} to #{unzipped}".color( :green )
       end
       
     end
