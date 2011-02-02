@@ -11,9 +11,11 @@ to make it easy to switch the symlinks immediately between installed versions of
 Installation
 ------------
 
-*hosted gem coming soon*
+To install from Rubygems:
 
-For now, clone the repo, then run `rake install`.
+`gem install fvm`
+
+Or alternatively, clone the repo, then run `rake install`.
 
 Usage
 -----
