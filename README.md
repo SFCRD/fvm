@@ -1,6 +1,8 @@
 Flex SDK Version Manager
 ========================
 
+**NOTE: This gem is under development (read: IT IS CURRENTLY BROKEN). Please watch the project for any new releases.**
+
 **fvm** is a ruby gem and executable for managing versions of the [Adobe Open Source Flex SDK][flex-sdk].
 
 The manager provides a command-line installation process for any available Flex SDK 4 versions and the 
