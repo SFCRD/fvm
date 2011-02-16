@@ -32,6 +32,11 @@ Usage
 
 `fvm unlink` removes any symlinks installed by **fvm**.
 
+Wish-List
+---------
 
+- `fvm langref` to install (or build) the language reference for this flex version
+
+-  Any command that downloads the SDK should have the user agree to the terms of use
 
 [flex-sdk]: http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK "Adobe Open Source Flex SDK"

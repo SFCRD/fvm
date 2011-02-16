@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'fvm'
-Fvm::CLI.start
+puts "The command line interface to FVM has been temporarily deprecated during the restructure. Sorry!"
+exit
+
+# require 'fvm'
+# Fvm::CLI.start

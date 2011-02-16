@@ -60,6 +60,12 @@ module Fvm
       local.bins.each { |bin| linker.link( bin.name, bin.path ) }
     end
     
+    desc 'test', 'Test something out'
+    def test
+      `FLEX_HOME=/Users/jeremy.ruppel/Developer/SDKs/flex_sdk_4.1.0.16076`
+      puts `$FLEX_HOME`
+    end
+    
     protected
     
     def check_for_write_perms!

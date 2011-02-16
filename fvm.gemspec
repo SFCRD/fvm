@@ -14,10 +14,11 @@ Gem::Specification.new do |s|
   s.summary     = 'Flex SDK version manager'
   s.description = 'Flex SDK version manager'
 
-  s.add_dependency 'thor',      '0.14.3'
-  s.add_dependency 'mechanize', '~> 1.0'
-  s.add_dependency 'highline',  '~> 1.6'
-  s.add_dependency 'rainbow',   '~> 1.1'
+  # s.add_dependency 'thor',      '0.14.3'
+  # s.add_dependency 'mechanize', '~> 1.0'
+  # s.add_dependency 'highline',  '~> 1.6'
+  # s.add_dependency 'rainbow',   '~> 1.1'
+  s.add_dependency 'nokogiri', '~> 1.4.4'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
