@@ -13,11 +13,13 @@ to make it easy to switch the symlinks immediately between installed versions of
 Installation
 ------------
 
-To install from Rubygems:
+As of version 0.0.4, this gem has been yanked from RubyGems. As the version number should indicate,
+the program is still very immature and requires much more development. The initial push to RubyGems
+was to facilitate distribution for testing, which made it very apparent there was much more work to do.
 
-`gem install fvm`
+For those who still really want to install this thing:
 
-Or alternatively, clone the repo, then run `rake install`.
+Clone the repo, then run `rake install`.
 
 Usage
 -----
