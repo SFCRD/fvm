@@ -15,12 +15,33 @@ class TestFvmParser < Test::Unit::TestCase
   def test_has_correct_keys
     assert_equal( [ 'Table Name', 'Second Table Name' ].sort, @result.keys.sort )
   end
-  # first section has correct length
-  def test_first_section_has_correct_length
-    # assert_equal( 3, @result.values.first.length )
+  # values are arrays of hashes
+  def test_values_are_arrays_of_hashes
+    @result.values.each do |table|
+      assert_instance_of( Array, table )
+      table.each do |entry|
+        assert_instance_of( Hash, entry )
+      end
+    end
   end
-  # second section has correct length
-  def test_second_section_has_correct_length
-    # assert_equal( 3, @result.values.last.length )
+  # first table has correct length
+  def test_first_table_has_correct_length
+    assert_equal( 1, @result.values.first.size )
+  end
+  # second table has correct length
+  def test_second_table_has_correct_length
+    assert_equal( 2, @result.values.last.size )
+  end
+  
+  # describe test
+  def test_describe_test
+    require 'pp'
+    
+    
+    [ 'Simplified' ].map { |sdk| "test/fixtures/parser/#{sdk}.html" }.each do |html|
+      
+      # pp Fvm::Parser.new.parse( Nokogiri::HTML( IO.read( html ) ) )
+      
+    end
   end
 end

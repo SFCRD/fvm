@@ -14,7 +14,7 @@ class TestFvmManipulator < Test::Unit::TestCase
   end
   # header node is formatted properly
   def test_header_node_is_formatted_properly
-    assert_equal( [ 'Header', 'Another', 'One More' ], @manipulator.headers( @html.at( Fvm::Parser::TABLE_XPATH ) ) )
+    assert_equal( [ 'Header', 'Version', 'One More' ], @manipulator.headers( @html.at( Fvm::Parser::TABLE_XPATH ) ) )
   end
   # rows node is formatted properly
   def test_rows_node_is_formatted_properly
@@ -28,8 +28,21 @@ class TestFvmManipulator < Test::Unit::TestCase
   # table is formatted properly
   def test_table_is_formatted_properly
     table = [ ]
-    table << { 'Header' => 'Header Value', 'Another' => '1.2.3.4567', 'One More' => 'http://download?build=1.2.3.4567&amp;pkgtype=1' }.sort
-    table << { 'Header' => 'Second Header Value', 'Another' => '1.2.3.1234', 'One More' => 'http://download?build=1.2.3.1234&amp;pkgtype=1' }.sort
+
+    table << { }.tap do |row|
+      row[ 'Header'   ] = 'Header Value'
+      row[ 'Version'  ] = '1.2.3.4567'
+      row[ 'One More' ] = 'http://download?build=1.2.3.4567&amp;pkgtype=1'
+      row.sort
+    end
+    
+    table << { }.tap do |row|
+      row[ 'Header'   ] = 'Second Header Value'
+      row[ 'Version'  ] = '1.2.3.1234'
+      row[ 'One More' ] = 'http://download?build=1.2.3.1234&amp;pkgtype=1'
+      row.sort
+    end
+    
     assert_equal( table, @manipulator.table( @html.at( Fvm::Parser::TABLE_XPATH ) ) )
   end
 end

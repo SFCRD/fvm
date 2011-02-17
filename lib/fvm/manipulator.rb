@@ -9,7 +9,7 @@ module Fvm
     end
     
     def table( node )
-      rows( node ).map { |row| headers( node ).zip( row ).sort }
+      rows( node ).map { |row| Hash[headers( node ).zip( row ).sort ]}
     end
     
     def headers( node )
