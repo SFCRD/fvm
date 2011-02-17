@@ -1,6 +1,10 @@
 module Fvm
   # autoload :CLI, 'fvm/cli'
   
+  autoload :Manipulator, 'fvm/manipulator'
+  
+  autoload :Parser, 'fvm/parser'
+  
   # module Builds
   #   autoload :Base, 'fvm/builds/base'
   #   autoload :Local, 'fvm/builds/local'
