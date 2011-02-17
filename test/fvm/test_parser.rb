@@ -32,16 +32,4 @@ class TestFvmParser < Test::Unit::TestCase
   def test_second_table_has_correct_length
     assert_equal( 2, @result.values.last.size )
   end
-  
-  # describe test
-  def test_describe_test
-    require 'pp'
-    
-    
-    [ 'Simplified' ].map { |sdk| "test/fixtures/parser/#{sdk}.html" }.each do |html|
-      
-      # pp Fvm::Parser.new.parse( Nokogiri::HTML( IO.read( html ) ) )
-      
-    end
-  end
 end
