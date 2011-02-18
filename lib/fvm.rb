@@ -7,6 +7,9 @@ module Fvm
   
   autoload :Build, 'fvm/build'
   
+  autoload :UI, 'fvm/ui'
+  
+  autoload :Driver, 'fvm/driver'
   
   # highline = HighLine.new( STDIN, STDOUT, :auto )
   # 

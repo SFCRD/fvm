@@ -10,7 +10,13 @@ module Fvm
     # see homebrew/extend/pathname#make_relative_symlink
     
     def install
-      
+      driver.install
+    end
+    
+    protected
+    
+    def driver
+      @driver ||= ::Driver.new
     end
     
   end
