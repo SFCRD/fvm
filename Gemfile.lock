@@ -4,6 +4,7 @@ PATH
     fvm (0.0.6)
       activeresource (~> 3.0.4)
       geoffrey (~> 1.1.3)
+      highline (~> 1.6)
       nokogiri (~> 1.4.4)
 
 GEM
@@ -23,6 +24,7 @@ GEM
       progressbar
       thor
     haml (3.0.25)
+    highline (1.6.1)
     i18n (0.5.0)
     libxml-ruby (1.1.4)
     libxml4r (0.2.6)
