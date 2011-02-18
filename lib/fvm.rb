@@ -7,6 +7,16 @@ module Fvm
   
   autoload :Build, 'fvm/build'
   
+  
+  # require 'highline'
+  # 
+  # @term = HighLine.new( STDIN, STDOUT, :auto )
+  # 
+  # # @term.wrap_at = :auto
+  # 
+  # @term.say @confirmer.license
+  
+  
   # module Builds
   #   autoload :Base, 'fvm/builds/base'
   #   autoload :Local, 'fvm/builds/local'
