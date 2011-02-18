@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   # s.add_dependency 'highline',  '~> 1.6'
   # s.add_dependency 'rainbow',   '~> 1.1'
   s.add_dependency 'nokogiri', '~> 1.4.4'
+  s.add_dependency 'activeresource', '~> 3.0.4'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
