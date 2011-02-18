@@ -5,6 +5,8 @@ module Fvm
   
   autoload :Parser, 'fvm/parser'
   
+  autoload :Build, 'fvm/build'
+  
   # module Builds
   #   autoload :Base, 'fvm/builds/base'
   #   autoload :Local, 'fvm/builds/local'
