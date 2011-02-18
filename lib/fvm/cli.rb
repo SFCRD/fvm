@@ -9,7 +9,9 @@ module Fvm
     
     # see homebrew/extend/pathname#make_relative_symlink
     
-    
+    def install
+      
+    end
     
   end
 end
