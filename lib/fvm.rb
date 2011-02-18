@@ -8,13 +8,14 @@ module Fvm
   autoload :Build, 'fvm/build'
   
   
-  # require 'highline'
+  # highline = HighLine.new( STDIN, STDOUT, :auto )
   # 
-  # @term = HighLine.new( STDIN, STDOUT, :auto )
+  # highline.say @confirmer.license
   # 
-  # # @term.wrap_at = :auto
+  # answer = highline.agree @confirmer.agreement
   # 
-  # @term.say @confirmer.license
+  # puts '_' * 50
+  # puts answer
   
   
   # module Builds

@@ -21,6 +21,7 @@ The Original Code consists of the files listed above.
 The Initial Developer of the Original Code is Adobe Systems Incorporated.
 
 By downloading, modifying, distributing, using and/or accessing any files in this Flex SDK, you agree to the terms and conditions of the applicable end user license agreement.   
+
 EOS
     end
 =begin rdoc
@@ -33,7 +34,7 @@ EOS
   License agreement statement
 =end
     def agreement
-      "I have read the License Agreement(s), and by downloading the software, I agree to the terms of the agreement."
+      "I have read the License Agreement(s), and by downloading the software, I agree to the terms of the agreement (yes|no):"
     end
   end
 end
