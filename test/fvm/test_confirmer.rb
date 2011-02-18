@@ -19,4 +19,15 @@ class TestFvmConfirmer < Test::Unit::TestCase
   def test_has_correct_license_url
     assert_equal( "http:/www.mozilla.org/MPL/", @confirmer.license_url )
   end
+  # describe test
+  def test_describe_test
+    require 'highline'
+    
+    
+    highline = HighLine.new( STDIN, STOUT, :auto )
+    
+    highline.say @confirmer.license
+    
+    highline.ask @confirmer.agreement
+  end
 end
