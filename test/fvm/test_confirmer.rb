@@ -1,6 +1,6 @@
 require "test/unit"
 
-require "fvm/confirmer"
+require "fvm/cli/confirmer"
 
 class TestFvmConfirmer < Test::Unit::TestCase
   # setup

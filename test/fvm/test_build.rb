@@ -1,6 +1,6 @@
 require "test/unit"
 
-require "fvm/build"
+require "fvm/cli/build"
 
 class TestFvmBuild < Test::Unit::TestCase
   # download url is correct for a numeric sdk

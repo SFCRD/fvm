@@ -1,8 +1,17 @@
+require 'highline'
+
 module Fvm
 =begin rdoc
   Contains various helpers to be used during the download confirmation process
 =end
   class Confirmer
+=begin rdoc
+  Asks the user to agree to the EULA license
+=end
+    def agree?
+      shell.say license
+      shell.agree agreement
+    end
 =begin rdoc
   EULA license text from the Open Source SDK download page.
 =end
@@ -35,6 +44,12 @@ EOS
 =end
     def agreement
       "I have read the License Agreement(s), and by downloading the software, I agree to the terms of the agreement (yes|no):"
+    end
+    
+    protected
+    
+    def shell
+      @shell ||= HighLine.new
     end
   end
 end

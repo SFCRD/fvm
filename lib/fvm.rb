@@ -1,15 +1,19 @@
 module Fvm
+  
   # autoload :CLI, 'fvm/cli'
+  
+  module CLI
+    autoload :Build,     'fvm/cli/build'
+    autoload :Confirmer, 'fvm/cli/confirmer'
+    autoload :Installer, 'fvm/cli/installer'
+    autoload :Shell,     'fvm/cli/shell'
+    autoload :Driver,    'fvm/cli/driver'
+  end
   
   autoload :Manipulator, 'fvm/manipulator'
   
   autoload :Parser, 'fvm/parser'
-  
-  autoload :Build, 'fvm/build'
-  
-  autoload :UI, 'fvm/ui'
-  
-  autoload :Driver, 'fvm/driver'
+
   
   # highline = HighLine.new( STDIN, STDOUT, :auto )
   # 
