@@ -5,7 +5,7 @@ require "fvm/cli/confirmer"
 class TestFvmConfirmer < Test::Unit::TestCase
   # setup
   def setup
-    @confirmer = Fvm::Confirmer.new
+    @confirmer = Fvm::CLI::Confirmer.new
   end
   # has license
   def test_has_license
