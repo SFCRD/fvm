@@ -3,27 +3,7 @@ module Fvm
     class Driver
 
       def install( options={} )
-        # TODO check for explicit version to install
-        # TODO check for sdk to choose from
 
-        # Geoffrey.package do
-        #         url build.zip_url
-        #         
-        #         def install
-        #           
-        #         end
-        #       end
-        
-        # build = shell.choose Build.all
-        # 
-        #   if build.installed?
-        #     shell.say 'This build is already installed.'
-        #   else
-        #     installed = installer.install build
-        #     
-        #     linker.link installed
-        #   end
-        
         begin
           builds = Fvm::CLI::Build.all
         rescue
@@ -32,21 +12,22 @@ module Fvm
 
         build = shell.choose builds
 
-        installed = installer.install( build.zip_url, build.version )
+        installed = installer.install build.zip_url, build.version
 
-        linker.link( File.join( installed, 'bin' ) )
+        linker.link File.join( installed, 'bin' )
         
+      end
+      
+      def use( options={} )
+        shell.exit "The 'use' task is not finished. Sorry!"
+      end
+      
+      def list( options={} )
+        shell.exit "The 'list' task is not finished. Sorry!"
       end
       
       def unlink
         linker.unlink!
-      end
-      
-      def test
-        
-        puts 'TEST YO'
-        puts File.owned?( linker.dir )
-        
       end
 
       protected
