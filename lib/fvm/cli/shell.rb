@@ -16,40 +16,33 @@ module Fvm
             builds[ choice ]
             
           end
-          
         end
       end
 =begin rdoc
   Asks the user if they agree to the MPL terms
 =end
       def mpl?
-        
+        highline.say license
+        highline.agree agreement
       end
-      
+=begin rdoc
+  Exit with the specified message
+=end
       def exit( message )
         highline.say message
         Kernel.exit 1
       end
-      
+=begin rdoc
+  Give mad props to the user
+=end
       def props( message )
         highline.say "<%= color( '#{message}', GREEN, BOLD )%>"
       end
 
-      # def choose_build
-      #         builds = Hash[ Build.all.map { |b| [ b.version, b ].flatten } ]
-      # 
-      #         highline.choose do |m|
-      # 
-      #           m.choices *builds.keys do |choice|
-      # 
-      #             builds[ choice ]
-      # 
-      #           end
-      #         end
-      #       end
-
       protected
-
+=begin rdoc
+  The HighLine instance for this shell wrapper
+=end
       def highline
         @highline ||= HighLine.new
       end
