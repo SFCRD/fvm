@@ -12,6 +12,17 @@ module Fvm
       def install
         driver.install
       end
+      
+      desc 'unlink', 'Unlinks all symlinks to the current Flex SDK'
+      def unlink
+        driver.unlink
+      end
+      
+      desc 'test', 'Test out some shiz'
+      def test
+        driver.test
+      end
+      
 
       protected
 

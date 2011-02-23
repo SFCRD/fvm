@@ -25,6 +25,11 @@ module Fvm
       def mpl?
         
       end
+      
+      def exit( message )
+        highline.say message
+        exit 1
+      end
 
       # def choose_build
       #         builds = Hash[ Build.all.map { |b| [ b.version, b ].flatten } ]

@@ -4,14 +4,14 @@ module Fvm
   module CLI
     class Linker
       
-      attr_reader :dir, :names
-      def initialize( dir, names )
+      attr_reader :dir, :executables
+      def initialize( dir, executables )
         @dir = File.expand_path( dir )
-        @names = names
+        @executables = executables
       end
       
       def files( src )
-        Dir[ File.join( src, '*' ) ].select { |name| names.include? File.basename( name ) }
+        Dir[ File.join( src, '*' ) ].select { |name| executables.include? File.basename( name ) }
       end
       
       def link( src )
@@ -30,9 +30,7 @@ module Fvm
       end
       
       def unlink!
-        files( dir ).each do |file|
-          File.delete file
-        end
+        files( dir ).each { |file| File.delete file }
       end
       
       protected
