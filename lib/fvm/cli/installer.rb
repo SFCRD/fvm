@@ -1,5 +1,6 @@
 require 'geoffrey'
 require 'fileutils'
+require 'pathname'
 
 module Fvm
   module CLI
@@ -7,7 +8,7 @@ module Fvm
 
       attr_reader :dir, :executables
       def initialize( dir, executables )
-        @dir = File.expand_path( dir )
+        @dir = Pathname.new( dir ).expand_path
         @executables = executables
       end
       
