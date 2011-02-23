@@ -82,6 +82,9 @@ module Fvm
   
 =end
       def list( options={} )
+        
+        puts installer.installations
+        
         shell.exit "The 'list' task is not finished. Sorry!"
       end
 =begin rdoc

@@ -25,8 +25,8 @@ module Fvm
         dest
       end
       
-      def installed_builds
-        
+      def installations
+        Dir[ File.join( dir, 'flex_sdk_*' ) ].map { |d| Installation.new( d ) }
       end
       
       protected
