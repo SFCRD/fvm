@@ -15,13 +15,27 @@ module Fvm
         #           
         #         end
         #       end
+        
+        build = shell.choose Build.all
 
+        if build.installed?
+          shell.say 'This build is already installed.'
+        else
+          installed = installer.install build
+          
+          linker.link installed
+        end
+        
       end
 
       protected
 
       def installer
         @installer ||= Installer.new( '~/Developer/SDKs' )
+      end
+      
+      def linker
+        @linker ||= Linker.new( '/usr/local/bin' )
       end
 
       def shell
