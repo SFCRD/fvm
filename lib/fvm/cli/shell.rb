@@ -1,4 +1,5 @@
 require 'highline'
+require 'active_support/ordered_hash'
 
 module Fvm
   module CLI
@@ -7,7 +8,8 @@ module Fvm
   Chooses a build from a set of builds
 =end
       def choose( builds )
-        builds = Hash[ builds.map { |b| [ b.to_menu, b ] } ]
+
+        builds = ActiveSupport::OrderedHash[ builds.sort.reverse.map { |b| [ b.to_menu, b ] } ]
         
         highline.choose do |m|
           
