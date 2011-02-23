@@ -28,7 +28,11 @@ module Fvm
       
       def exit( message )
         highline.say message
-        exit 1
+        Kernel.exit 1
+      end
+      
+      def props( message )
+        highline.say "<%= color( '#{message}', GREEN, BOLD )%>"
       end
 
       # def choose_build

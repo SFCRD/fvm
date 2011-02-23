@@ -4,17 +4,45 @@ module Fvm
 
       def install( options={} )
 
-        begin
-          builds = Fvm::CLI::Build.all
-        rescue
-          shell.exit 'There was a problem connecting to the FVM API. Please try again.'
+        if options.version?
+          
+          begin
+            builds = Fvm::CLI::Build.version( options.version )
+          rescue
+            shell.exit 'There was a problem connecting to the FVM API. Please try again.'
+          end
+          
+          shell.exit "No Flex SDK build found with version #{options.version}" if builds.empty?
+          build = builds.first
+          
+        elsif options.sdk?
+          
+          begin
+            builds = Fvm::CLI::Build.sdk( options.sdk )
+          rescue
+            shell.exit 'There was a problem connecting to the FVM API. Please try again.'
+          end
+          
+          shell.exit "No Flex SDK build found in SDK #{options.sdk}" if builds.empty?
+          build = shell.choose builds
+          
+        else
+          
+          begin
+            builds = Fvm::CLI::Build.all
+          rescue
+            shell.exit 'There was a problem connecting to the FVM API. Please try again.'
+          end
+          
+          build = shell.choose builds
+          
         end
-
-        build = shell.choose builds
-
+        
         installed = installer.install build.zip_url, build.version
 
         linker.link File.join( installed, 'bin' )
+        
+        shell.props "Flex SDK version #{build.version} successfully installed to #{installed}"
         
       end
       

@@ -5,8 +5,9 @@ module Fvm
     class Thor < Thor
 
       desc 'install', 'Installs the specified Flex SDK'
+      method_options %w| version -v | => :string, %w| sdk -s | => :string
       def install
-        driver.install
+        driver.install options
       end
       
       desc 'use', 'Create symlinks to an existing Flex SDK installation'
