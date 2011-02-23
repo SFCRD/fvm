@@ -21,5 +21,15 @@ class TestFvmBuild < Test::Unit::TestCase
   def test_responds_to_to_menu
     assert_respond_to( Fvm::CLI::Build.new, :to_menu )
   end
-  
+  # responds to spaceship
+  def test_responds_to_spaceship
+    assert_respond_to( Fvm::CLI::Build.new, :'<=>' )
+  end
+  # sorts correctly
+  def test_sorts_correctly
+    one   = Fvm::CLI::Build.new( :version => '10.2.30' )
+    two   = Fvm::CLI::Build.new( :version => '1.20.13' )
+    three = Fvm::CLI::Build.new( :version => '5.6.7' )
+    assert_equal( [ two, three, one ], [ one, two, three ].sort )
+  end
 end

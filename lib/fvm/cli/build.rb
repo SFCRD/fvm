@@ -1,8 +1,12 @@
 require 'active_resource'
+require 'versionomy'
 
 module Fvm
   module CLI
     class Build < ActiveResource::Base
+      
+      include Comparable
+      
       self.site = 'http://fvm.heroku.com'
       self.format = :json
 
@@ -26,6 +30,10 @@ module Fvm
         out = [ version, milestone ]
         out.unshift '*' if active?
         out.join ' '
+      end
+      
+      def <=>( other )
+        Versionomy.parse( version ) <=> Versionomy.parse( other.version )
       end
       
     end

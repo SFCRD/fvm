@@ -1,8 +1,10 @@
 require 'pathname'
+require 'versionomy'
 
 module Fvm
   module CLI
     class Installation
+      include Comparable
       
       attr_reader :dir
       def initialize( dir )
@@ -21,6 +23,10 @@ module Fvm
         out = [ version ]
         out.unshift '*' if active?
         out.join ' '
+      end
+      
+      def <=> ( other )
+        Versionomy.parse( version ) <=> Versionomy.parse( other.version )
       end
       
     end
