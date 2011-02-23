@@ -56,6 +56,7 @@ module Fvm
       
       def unlink
         linker.unlink!
+        shell.props "All Flex SDK symlinks successfully removed."
       end
 
       protected
