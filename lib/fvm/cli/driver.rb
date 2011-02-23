@@ -17,7 +17,7 @@ module Fvm
     -s, --sdk Only present a menu containing builds from the given SDK name
     
 =end
-      def install( options={} )
+      def install( options )
 
         if options.version?
           
@@ -70,7 +70,7 @@ module Fvm
   -v, --version Create symlinks for the specified version instead of selecting from a menu.
   
 =end
-      def use( options={} )
+      def use( options )
         shell.exit "The 'use' task is not finished. Sorry!"
       end
 =begin rdoc
@@ -81,11 +81,22 @@ module Fvm
   -r, --remote List available remote builds.
   
 =end
-      def list( options={} )
-        
-        puts installer.installations
-        
-        shell.exit "The 'list' task is not finished. Sorry!"
+      def list( options )
+        if options.remote?
+          begin
+            builds = Build.all
+          rescue
+            shell.exit 'There was a problem connecting to the FVM API. Please try again.'
+          end
+          
+          shell.list builds
+        else
+          installations = installer.installations
+          
+          shell.exit "No Flex SDK versions installed. Run 'fvm install' to install some!" if installations.empty?
+          
+          shell.list installations
+        end
       end
 =begin rdoc
   Removes all symlinks created by FVM.

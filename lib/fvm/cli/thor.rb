@@ -22,8 +22,9 @@ module Fvm
   See Fvm::CLI::Driver#list
 =end
       desc 'list', 'List available installed or remote Flex SDK builds'
+      method_options %w| remote -r | => :boolean
       def list
-        driver.list
+        driver.list options
       end
 =begin rdoc
   See Fvm::CLI::Driver#unlink

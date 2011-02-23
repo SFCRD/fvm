@@ -22,7 +22,7 @@ module Fvm
       end
       
       def list( builds )
-        builds.each do |build|
+        builds.sort.reverse.each do |build|
           puts build.to_menu
         end
       end
