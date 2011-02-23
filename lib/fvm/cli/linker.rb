@@ -6,7 +6,7 @@ module Fvm
       
       attr_reader :dir, :names
       def initialize( dir, names )
-        @dir = dir
+        @dir = File.expand_path( dir )
         @names = names
       end
       

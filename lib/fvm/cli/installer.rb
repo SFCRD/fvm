@@ -1,15 +1,20 @@
+require 'geoffrey'
+require 'fileutils'
+
 module Fvm
   module CLI
     class Installer
 
       attr_reader :dir
       def initialize( dir )
-        @dir = dir
+        @dir = File.expand_path( dir )
       end
       
-      
-      def install( zip_url )
-        puts download zip_url
+      def install( zip_url, version )
+        temp = download zip_url
+        dest = File.join( dir, "flex_sdk_#{version}" )
+        move = FileUtils.mv temp, dest
+        dest if move.eql? 0
       end
       
       def installed_builds

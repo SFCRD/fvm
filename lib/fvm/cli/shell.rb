@@ -7,7 +7,17 @@ module Fvm
   Chooses a build from a set of builds
 =end
       def choose( builds )
+        builds = Hash[ builds.map { |b| [ b.version, b ] } ]
         
+        highline.choose do |m|
+          
+          m.choices *builds.keys do |choice|
+            
+            builds[ choice ]
+            
+          end
+          
+        end
       end
 =begin rdoc
   Asks the user if they agree to the MPL terms

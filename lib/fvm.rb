@@ -1,12 +1,14 @@
 module Fvm
   
-  # autoload :CLI, 'fvm/cli'
+  
   
   module CLI
     autoload :Build,     'fvm/cli/build'
     autoload :Installer, 'fvm/cli/installer'
+    autoload :Linker,    'fvm/cli/linker'
     autoload :Shell,     'fvm/cli/shell'
     autoload :Driver,    'fvm/cli/driver'
+    autoload :Thor,      'fvm/cli/thor'
   end
   
   # TODO move into module

@@ -23,6 +23,12 @@ module Fvm
         #     
         #     linker.link installed
         #   end
+
+        build = shell.choose( Fvm::CLI::Build.all )
+
+        installed = installer.install( build.zip_url, build.version )
+
+        linker.link( File.join( installed, 'bin' ) )
         
       end
 
@@ -33,7 +39,7 @@ module Fvm
       end
       
       def linker
-        @linker ||= Linker.new( '/usr/local/bin' )
+        @linker ||= Linker.new( '/usr/local/bin', [ 'asdoc', 'compc', 'mxmlc' ] )
       end
 
       def shell
