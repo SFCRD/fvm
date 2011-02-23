@@ -3,7 +3,6 @@ PATH
   specs:
     fvm (0.0.7)
       activeresource (~> 3.0.4)
-      facets (~> 2.9.1)
       geoffrey (~> 1.1.3)
       highline (~> 1.6)
       nokogiri (~> 1.4.4)
@@ -23,7 +22,6 @@ GEM
     activesupport (3.0.4)
     blockenspiel (0.4.1)
     builder (2.1.2)
-    facets (2.9.1)
     geoffrey (1.1.3)
       plist4r
       progressbar
