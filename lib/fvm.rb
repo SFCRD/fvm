@@ -4,12 +4,12 @@ module Fvm
   
   module CLI
     autoload :Build,     'fvm/cli/build'
-    autoload :Confirmer, 'fvm/cli/confirmer'
     autoload :Installer, 'fvm/cli/installer'
     autoload :Shell,     'fvm/cli/shell'
     autoload :Driver,    'fvm/cli/driver'
   end
   
+  # TODO move into module
   autoload :Manipulator, 'fvm/manipulator'
   
   autoload :Parser, 'fvm/parser'

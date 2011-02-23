@@ -9,7 +9,7 @@ module Fvm
       
       
       def install( zip_url )
-
+        puts download zip_url
       end
       
       def installed_builds
@@ -22,7 +22,7 @@ module Fvm
         Geoffrey.package do
           url zip_url
           def install
-
+            File.dirname file_to_install
           end
         end
       end

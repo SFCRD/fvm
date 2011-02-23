@@ -2,11 +2,9 @@ module Fvm
   module CLI
     class Driver
 
-      def install( options )
+      def install( options={} )
         # TODO check for explicit version to install
         # TODO check for sdk to choose from
-
-        build = ui.choose_build
 
         # Geoffrey.package do
         #         url build.zip_url
@@ -16,15 +14,15 @@ module Fvm
         #         end
         #       end
         
-        build = shell.choose Build.all
-
-        if build.installed?
-          shell.say 'This build is already installed.'
-        else
-          installed = installer.install build
-          
-          linker.link installed
-        end
+        # build = shell.choose Build.all
+        # 
+        #   if build.installed?
+        #     shell.say 'This build is already installed.'
+        #   else
+        #     installed = installer.install build
+        #     
+        #     linker.link installed
+        #   end
         
       end
 
