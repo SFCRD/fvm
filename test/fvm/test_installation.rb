@@ -15,4 +15,12 @@ class TestFvmCliInstallation < Test::Unit::TestCase
   def test_version_returns_the_version_at_the_end_of_the_dirname
     assert_equal( '1.2.3.4567', @installation.version )
   end
+  # responds to active?
+  def test_responds_to_active?
+    assert_respond_to( Fvm::CLI::Installation.new( '.' ), :active? )
+  end
+  # responds to to_menu
+  def test_responds_to_to_menu
+    assert_respond_to( Fvm::CLI::Installation.new( '.' ), :to_menu )
+  end
 end

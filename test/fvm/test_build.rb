@@ -13,4 +13,13 @@ class TestFvmBuild < Test::Unit::TestCase
     build = Fvm::CLI::Build.new( :version => '1.2.3.4567', :sdk => 'Hero' )
     assert_equal( "http://fpdownload.adobe.com/pub/flex/sdk/builds/flexhero/flex_sdk_1.2.3.4567_mpl.zip", build.zip_url )
   end
+  # responds to active?
+  def test_responds_to_active?
+    assert_respond_to( Fvm::CLI::Build.new, :active? )
+  end
+  # responds to to_menu
+  def test_responds_to_to_menu
+    assert_respond_to( Fvm::CLI::Build.new, :to_menu )
+  end
+  
 end

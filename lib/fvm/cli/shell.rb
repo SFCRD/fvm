@@ -7,7 +7,7 @@ module Fvm
   Chooses a build from a set of builds
 =end
       def choose( builds )
-        builds = Hash[ builds.map { |b| [ b.version, b ] } ]
+        builds = Hash[ builds.map { |b| [ b.to_menu, b ] } ]
         
         highline.choose do |m|
           
@@ -16,6 +16,12 @@ module Fvm
             builds[ choice ]
             
           end
+        end
+      end
+      
+      def list( builds )
+        builds.each do |build|
+          puts build.to_menu
         end
       end
 =begin rdoc

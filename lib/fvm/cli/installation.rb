@@ -10,11 +10,17 @@ module Fvm
       end
       
       def version
-        @dir.basename.to_s.delete( 'flex_sdk_' )
+        @dir.basename.to_s.sub( /^flex_sdk_/, '' )
       end
       
-      def to_s
-        "Flex SDK #{version}"
+      def active?
+        Fvm::System.active?( self )
+      end
+      
+      def to_menu
+        out = [ version ]
+        out.unshift '*' if active?
+        out.join ' '
       end
       
     end
