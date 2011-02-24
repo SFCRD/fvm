@@ -19,12 +19,12 @@ Installation
 
 First, install the **fvm** gem:
 
-  gem install fvm
+	gem install fvm
 
 Next, add the following to your bash initialization script (bashrc, bash_init, /etc/profile, whatever you prefer):
 
-  [[ -s $(fvm restart) ]] && source $(fvm restart)
-  # This loads FVM into a shell session.
+	[[ -s $(fvm restart) ]] && source $(fvm restart)
+	# This loads FVM into a shell session.
 
 *Note: If you also have **rvm** installed, make sure these lines go **AFTER** the **rvm** initialization.*
 
