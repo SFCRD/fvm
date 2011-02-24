@@ -38,6 +38,11 @@ module Fvm
       def which
         driver.which
       end
+      
+      desc 'home', 'Prints the current home of the Flex SDK, if any'
+      def home
+        driver.home
+      end
 
       protected
 

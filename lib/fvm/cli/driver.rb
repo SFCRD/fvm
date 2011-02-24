@@ -114,6 +114,11 @@ module Fvm
       def which
         puts Fvm::System.active_version? ? Fvm::System.active_version.version : ''
       end
+      
+      def home
+        installations = installer.installations.select( &:active? )
+        puts installations.any? ? installations.first.dir : ''
+      end
 
       protected
       
