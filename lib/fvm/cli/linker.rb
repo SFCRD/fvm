@@ -27,6 +27,13 @@ module Fvm
             end
           end
         end
+        # restart fvm to reset $FLEX_HOME
+        file = Pathname.new( __FILE__ )
+        puts file.inspect
+        targ = file.join( '..', '..', '..', '..', 'scripts', 'wrap' )
+        puts targ.inspect
+        puts targ.exist?
+        puts `source "#{targ.to_s}"`
       end
       
       def unlink!

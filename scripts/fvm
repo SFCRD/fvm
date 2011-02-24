@@ -5,3 +5,6 @@ export FLEX_HOME="$HOME/Developer/SDKs/flex_sdk_$(fvm which)"
 
 # TODO find a way to make this this file's path
 alias fvm-restart="source $(dirname $(dirname $(gem which fvm)))/scripts/fvm"
+
+echo "fvm-restart run successfully"
+echo $FLEX_HOME
