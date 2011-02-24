@@ -33,17 +33,29 @@ module Fvm
       def unlink
         driver.unlink
       end
-      
+=begin rdoc
+  See Fvm::CLI::Driver#which
+=end
       desc 'which', 'Prints the currently-linked Flex SDK version, if any'
       def which
         driver.which
       end
-      
+=begin rdoc
+  See Fvm::CLI::Driver#home
+=end
       desc 'home', 'Prints the current home of the Flex SDK, if any'
       def home
         driver.home
       end
-
+=begin rdoc
+  See Fvm::CLI::Driver#restart
+=end
+      desc 'restart', 'Resets FLEX_HOME environment variable'
+      method_options %w| source -s | => :boolean
+      def restart
+        driver.restart options
+      end
+      
       protected
 
       def driver

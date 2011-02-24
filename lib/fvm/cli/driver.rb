@@ -114,10 +114,22 @@ module Fvm
       def which
         puts Fvm::System.active_version? ? Fvm::System.active_version.version : ''
       end
-      
+=begin rdoc
+  Prints the active Flex SDK home directory
+=end
       def home
         installations = installer.installations.select( &:active? )
         puts installations.any? ? installations.first.dir : ''
+      end
+=begin rdoc
+  Prints the location of the fvm-restart script
+  
+  OPTIONS
+  
+  -s, --source Prepends 'source' to the output so it can be piped to bash
+=end
+      def restart( options )
+        puts options.source? ? "source #{restart_script_path}" : restart_script_path
       end
 
       protected
@@ -136,6 +148,10 @@ module Fvm
 
       def shell
         @shell ||= Shell.new
+      end
+      
+      def restart_script_path
+        File.expand_path( File.join( `gem which fvm`.chomp, '..', '..', 'scripts', 'fvm' ) )
       end
 
     end

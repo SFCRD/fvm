@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO better to get this path from fvm itself
-export FLEX_HOME="$HOME/Developer/SDKs/flex_sdk_$(fvm which)"
+export FLEX_HOME="$(fvm home)"
 
 # TODO find a way to make this this file's path
 alias fvm-restart="source $(dirname $(dirname $(gem which fvm)))/scripts/fvm"
