@@ -1,6 +1,8 @@
 Flex SDK Version Manager
 ========================
 
+**FVM is a work in progress! It DOES NOT WORK RIGHT NOW. I'll remove this notice when we're good to go.**
+
 **fvm** is a ruby gem and executable for managing versions of the [Adobe Open Source Flex SDK][flex-sdk].
 
 *It has only been tested on Mac OSX 10.6.4 and is likely to not work on many other configurations.* If you
