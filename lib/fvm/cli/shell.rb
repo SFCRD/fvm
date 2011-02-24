@@ -20,7 +20,9 @@ module Fvm
           end
         end
       end
-      
+=begin rdoc
+  Outputs a list of all builds in the set
+=end
       def list( builds )
         builds.sort.reverse.each do |build|
           puts build.to_menu
