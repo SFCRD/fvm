@@ -3,6 +3,9 @@ Flex SDK Version Manager
 
 **fvm** is a ruby gem and executable for managing versions of the [Adobe Open Source Flex SDK][flex-sdk].
 
+*It has only been tested on Mac OSX 10.6.4 and is likely to not work on many other configurations.* If you
+have any success stories, however, please let me know and I'll add them here.
+
 The manager provides a command-line installation process for any available Flex SDK 4 versions and the 
 ability to symlink to the SDK's executables from `/usr/local/bin` (The same place Homebrew suggests). 
 This allows programs like `mxmlc`, `asdoc`, and `compc` to be available from the command line easily. 
