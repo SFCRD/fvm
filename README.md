@@ -23,7 +23,7 @@ First, install the **fvm** gem:
 
 Next, add the following to your bash initialization script (bashrc, bash_init, /etc/profile, whatever you prefer):
 
-	[[ -s $(fvm restart) ]] && source $(fvm restart)
+	[[ -s $(fvm restart --chomp) ]] && source $(fvm restart --chomp)
 	# This loads FVM into a shell session.
 
 *Note: If you also have **rvm** installed, make sure these lines go **AFTER** the **rvm** initialization.*
