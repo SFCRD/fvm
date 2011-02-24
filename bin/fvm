@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
 
-puts "CLI is still broken! Sorry!"
-exit
-# require 'fvm'
-# Fvm::CLI::Thor.start
+require 'fvm'
+Fvm::CLI::Thor.start
