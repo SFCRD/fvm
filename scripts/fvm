@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# TODO better to get this path from fvm itself
+# this resets the FLEX_HOME environment variable
+# to the current version of the sdk linked to by fvm
 export FLEX_HOME="$(fvm home)"
 
-# TODO find a way to make this this file's path
+# this sets the alias for this command after being run
+# from a bash init script
 alias fvm-restart="source $(fvm restart)"
-
-echo "fvm-restart run successfully"
-echo $FLEX_HOME
