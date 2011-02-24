@@ -18,7 +18,7 @@ module Fvm
         files( src ).each do |file|
           Dir.chdir dir do
             # thanks, homebrew!
-            rv = system 'ln', '-sf', path_to( file )
+            rv = system 'sudo', 'ln', '-sf', path_to( file )
             unless rv and $? == 0
               raise <<-EOS.undent
                 Could not create symlink to #{file.to_s}.
