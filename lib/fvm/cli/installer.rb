@@ -42,7 +42,7 @@ module Fvm
       end
       
       def make_executables_executable!( dir )
-        executables_in( dir ).each { |name| File.chmod( 755, name ) unless File.executable? name }
+        executables_in( dir ).each { |name| `chmod 755 #{name}` }
       end
       
       def executables_in( dir )
