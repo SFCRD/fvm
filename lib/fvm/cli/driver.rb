@@ -108,6 +108,12 @@ module Fvm
         linker.unlink!
         shell.props "All Flex SDK symlinks successfully removed."
       end
+=begin rdoc
+  Prints the active Flex SDK version number
+=end
+      def which
+        puts Fvm::System.active_version? ? Fvm::System.active_version.version : ''
+      end
 
       protected
       

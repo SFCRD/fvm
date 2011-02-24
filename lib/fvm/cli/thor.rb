@@ -33,6 +33,11 @@ module Fvm
       def unlink
         driver.unlink
       end
+      
+      desc 'which', 'Prints the currently-linked Flex SDK version, if any'
+      def which
+        driver.which
+      end
 
       protected
 
