@@ -60,6 +60,10 @@ module Fvm
   The HighLine instance for this shell wrapper
 =end
       def highline
+        # ruby eof inconsistency bug
+        # https://github.com/JEG2/highline/issues/closed/#issue/2
+        HighLine.track_eof = false
+        
         @highline ||= HighLine.new
       end
       
