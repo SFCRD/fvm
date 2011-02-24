@@ -17,13 +17,29 @@ installed versions of the SDK if you need to.
 Installation
 ------------
 
-`gem install fvm`
+First, install the **fvm** gem:
+
+  gem install fvm
+
+Next, add the following to your bash initialization script (bashrc, bash_init, /etc/profile, whatever you prefer):
+
+  [[ -s $(fvm restart) ]] && source $(fvm restart)
+  # This loads FVM into a shell session.
+
+*Note: If you also have **rvm** installed, make sure these lines go **AFTER** the **rvm** initialization.*
+
+Restart your shell and you're good to go.
 
 Caveats
 -------
 
 - As of v0.1.1, I've only included `mxmlc`, `asdoc`, and `compc` to the list of executables to link. I'll
   be adding more as fast as I can test them out, but if you want some programs before others, hit me up.
+
+- I'm still trying to find a clean way to reset $FLEX_HOME after installing/using a new Flex SDK version.
+  Currently, the environment variable cannot be set in the ruby process, so there is a helper script,
+  `fvm-restart` that you'll need to run after either of those commands. Also, `fvm-restart` will be run
+  for any new shells (if you followed the installation instructions) so you could just re-start Terminal.
 
 Usage
 -----
@@ -37,6 +53,8 @@ Usage
 `fvm unlink` removes any symlinks installed by **fvm**.
 
 `fvm which` prints the currently-linked Flex SDK version.
+
+`fvm-restart` re-sets the $FLEX_HOME environment variable.
 
 Wish-List
 ---------
