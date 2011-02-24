@@ -50,10 +50,9 @@ module Fvm
 =begin rdoc
   See Fvm::CLI::Driver#restart
 =end
-      desc 'restart', 'Resets FLEX_HOME environment variable'
-      method_options %w| source -s | => :boolean
+      desc 'restart', 'Prints the location of the fvm-restart script'
       def restart
-        driver.restart options
+        driver.restart
       end
       
       protected

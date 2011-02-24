@@ -123,13 +123,9 @@ module Fvm
       end
 =begin rdoc
   Prints the location of the fvm-restart script
-  
-  OPTIONS
-  
-  -s, --source Prepends 'source' to the output so it can be piped to bash
 =end
-      def restart( options )
-        puts options.source? ? "source #{restart_script_path}" : restart_script_path
+      def restart
+        puts restart_script_path
       end
 
       protected
