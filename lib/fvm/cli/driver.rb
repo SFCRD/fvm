@@ -61,6 +61,8 @@ module Fvm
 
         shell.props "Flex SDK version #{build.version} successfully installed to #{installed}"
         
+        shell.warn_restart!
+        
       end
 =begin rdoc
   Select an installed version of the Flex SDK to link to.  
@@ -74,6 +76,10 @@ module Fvm
         installation = shell.choose installations
         
         linker.link File.join( installation.dir, 'bin' )
+        
+        shell.props "Now using Flex SDK version #{installation.version}"
+        
+        shell.warn_restart!
         
       end
 =begin rdoc

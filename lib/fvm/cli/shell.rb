@@ -46,6 +46,12 @@ module Fvm
       def props( message )
         highline.say "<%= color( '#{message}', GREEN, BOLD )%>"
       end
+=begin rdoc
+  For the time being, the user must manually re-set $FLEX_HOME. Warn them!
+=end
+      def warn_restart!
+        highline.say "<%= color( 'You have changed the Flex SDK version. Please run `fvm-restart` to re-set $FLEX_HOME.', RED )%>"
+      end
 
       protected
 =begin rdoc
