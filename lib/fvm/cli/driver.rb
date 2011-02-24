@@ -63,15 +63,18 @@ module Fvm
         
       end
 =begin rdoc
-  Select an installed version of the Flex SDK to link to.
-  
-  OPTIONS
-  
-  -v, --version Create symlinks for the specified version instead of selecting from a menu.
-  
+  Select an installed version of the Flex SDK to link to.  
 =end
-      def use( options )
-        shell.exit "The 'use' task is not finished. Sorry!"
+      def use
+        
+        installations = installer.installations
+        
+        shell.exit "No Flex SDK versions installed. Run 'fvm install' to install some!" if installations.empty?
+        
+        installation = shell.choose installations
+        
+        linker.link File.join( installation.dir, 'bin' )
+        
       end
 =begin rdoc
   List Flex SDK builds installed locally. Will also show which build is currently linked.
