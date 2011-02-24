@@ -116,22 +116,42 @@ module Fvm
       end
 =begin rdoc
   Prints the active Flex SDK version number
+  
+  OPTIONS
+  
+  -c, --chomp `print` instead of `puts`
 =end
-      def which
-        puts Fvm::System.active_version? ? Fvm::System.active_version.version : ''
+      def which( options )
+        if Fvm::System.active_version?
+          options.chomp? ? print( Fvm::System.active_version.version ) : puts( Fvm::System.active_version.version )
+        else
+          print ''
+        end
       end
 =begin rdoc
   Prints the active Flex SDK home directory
+  
+  OPTIONS
+  
+  -c, --chomp `print` instead of `puts`
 =end
-      def home
+      def home( options )
         installations = installer.installations.select( &:active? )
-        puts installations.any? ? installations.first.dir : ''
+        if installations.any?
+          options.chomp? ? print( installations.first.dir ) : puts( installations.first.dir )
+        else
+          print ''
+        end
       end
 =begin rdoc
   Prints the location of the fvm-restart script
+  
+  OPTIONS
+  
+  -c, --chomp `print` instead of `puts`
 =end
-      def restart
-        puts restart_script_path
+      def restart( options )
+        options.chomp? ? print( restart_script_path ) : puts( restart_script_path )
       end
 
       protected

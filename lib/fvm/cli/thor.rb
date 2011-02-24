@@ -37,22 +37,25 @@ module Fvm
   See Fvm::CLI::Driver#which
 =end
       desc 'which', 'Prints the currently-linked Flex SDK version, if any'
+      method_options %w| chomp -c | => :boolean
       def which
-        driver.which
+        driver.which options
       end
 =begin rdoc
   See Fvm::CLI::Driver#home
 =end
       desc 'home', 'Prints the current home of the Flex SDK, if any'
+      method_options %w| chomp -c | => :boolean
       def home
-        driver.home
+        driver.home options
       end
 =begin rdoc
   See Fvm::CLI::Driver#restart
 =end
       desc 'restart', 'Prints the location of the fvm-restart script'
+      method_options %w| chomp -c | => :boolean
       def restart
-        driver.restart
+        driver.restart options
       end
       
       protected
