@@ -4,7 +4,7 @@
 export FLEX_HOME="$(fvm home)"
 
 # TODO find a way to make this this file's path
-alias fvm-restart="source $(dirname $(dirname $(gem which fvm)))/scripts/fvm"
+alias fvm-restart="source $(fvm restart)"
 
 echo "fvm-restart run successfully"
 echo $FLEX_HOME
