@@ -4,6 +4,9 @@
 # to the current version of the sdk linked to by fvm
 export FLEX_HOME="$(fvm home --chomp)"
 
+# TODO fvm restart is deprecated, try and make a post-install
+# hook to create the script in .fvm/whatever DO WORK SON
+
 # this sets the alias for this command after being run
 # from a bash init script
 alias fvm-restart="source $(fvm restart --chomp)"
