@@ -143,16 +143,6 @@ module Fvm
           print ''
         end
       end
-=begin rdoc
-  Prints the location of the fvm-restart script
-  
-  OPTIONS
-  
-  -c, --chomp `print` instead of `puts`
-=end
-      def restart( options )
-        options.chomp? ? print( restart_script_path ) : puts( restart_script_path )
-      end
 
       protected
       
@@ -170,10 +160,6 @@ module Fvm
 
       def shell
         @shell ||= Shell.new
-      end
-      
-      def restart_script_path
-        File.expand_path( File.join( `gem which fvm`.chomp, '..', '..', 'scripts', 'fvm' ) )
       end
 
     end

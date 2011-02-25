@@ -49,14 +49,6 @@ module Fvm
       def home
         driver.home options
       end
-=begin rdoc
-  See Fvm::CLI::Driver#restart
-=end
-      desc 'restart', 'Prints the location of the fvm-restart script'
-      method_options %w| chomp -c | => :boolean
-      def restart
-        driver.restart options
-      end
       
       protected
 
