@@ -20,7 +20,7 @@ module Fvm
             # thanks, homebrew!
             rv = system 'ln', '-sf', file
             unless rv and $? == 0
-              raise <<-EOS.undent
+              raise <<-EOS
                 Could not create symlink to #{file.to_s}.
                 Check that you have permissions on #{dir}.
               EOS

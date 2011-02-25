@@ -9,4 +9,4 @@ export FLEX_HOME="$(fvm home --chomp)"
 
 # this sets the alias for this command after being run
 # from a bash init script
-alias fvm-restart="source $(fvm restart --chomp)"
+alias fvm-restart="source $HOME/.fvm/scripts/fvm"

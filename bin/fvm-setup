@@ -1,3 +1,43 @@
 #!/usr/bin/env ruby -wKU
 
-puts "FVM INSTALLER YO"
+require 'highline'
+require 'fileutils'
+require 'fvm/environment'
+
+def shell
+  @shell ||= HighLine.new
+end
+
+def here
+  @here ||= Pathname.new( __FILE__ ).dirname
+end
+
+def home
+  Fvm::Environment::FVM_HOME
+end
+
+def task( message, &block )
+  shell.say "<%= color '#{message}', BOLD %>"
+  shell.say 'Done' if block.call
+end
+
+task "Creating #{home}" do
+  Dir.mkdir home unless home.exist?
+  true
+end
+
+task "Copying install files" do
+  FileUtils.cp_r here.join( '..', 'install', 'scripts' ), home.join( 'scripts' )
+  true
+end
+
+task "Add the following to the end of your ~/.bash_profile (or similar bash init file):" do
+  fvm_restart = home.join( 'scripts', 'fvm' ).to_s.sub( home.join( '..' ).to_s, '$HOME' )
+  shell.say <<-EOS
+  
+    [[ -s "#{fvm_restart}" ]] && source "#{fvm_restart}"
+    # This loads FVM into a shell session.
+    
+  EOS
+  false
+end
