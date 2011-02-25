@@ -2,6 +2,7 @@
 
 require 'highline'
 require 'fileutils'
+require 'fvm/extend/pathname'
 require 'fvm/environment'
 
 def shell
@@ -31,11 +32,15 @@ task "Copying install files" do
   true
 end
 
+# task "Making /usr/local/bin group writable" do
+#   puts 'TODO!!'
+# end
+
 task "Add the following to the end of your ~/.bash_profile (or similar bash init file):" do
-  fvm_restart = home.join( 'scripts', 'fvm' ).to_s.sub( home.join( '..' ).to_s, '$HOME' )
+  restart = home.join( 'scripts', 'fvm' ).to_bash
   shell.say <<-EOS
   
-    [[ -s "#{fvm_restart}" ]] && source "#{fvm_restart}"
+    [[ -s "#{restart}" ]] && source "#{restart}"
     # This loads FVM into a shell session.
     
   EOS
