@@ -79,7 +79,7 @@ end
 
 task "Add the following to the end of your ~/.bash_profile (or similar bash init file):" do
   restart = home.join( 'scripts', 'fvm' ).to_bash
-  shell.say <<-EOS.undent
+  shell.say <<-EOS
   
     [[ -s "#{restart}" ]] && source "#{restart}"
     # This loads FVM into a shell session.
