@@ -3,7 +3,6 @@
 require 'highline'
 require 'fileutils'
 require 'fvm/extend/pathname'
-require 'fvm/extend/string'
 require 'fvm/environment'
 require 'fvm/version'
 
